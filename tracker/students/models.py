@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 class Department(models.Model):
     department_name = models.CharField(max_length=50, unique=True)
@@ -57,7 +58,7 @@ class Grade(models.Model):
         elif self.grade >= 80 and self.grade <= 84:
             return 'A-'
         elif self.grade >= 75 and self.grade <= 79:
-            return 'B-'
+            return 'B+'
         elif self.grade >= 70 and self.grade <= 74:
             return 'B'
         elif self.grade >= 65 and self.grade <= 69:
@@ -66,8 +67,14 @@ class Grade(models.Model):
             return 'C'
         else:
             return 'F'
+        
+    def clean(self):
+        if self.student.department != self.course.department:
+            raise ValidationError('Student and Course must belong to the same Department')
 
-
+    def save(self,*args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.student} - {self.course}: {self.grade}"
+        return f"{self.student} - {self.course}: {self.grade_letter()}"
