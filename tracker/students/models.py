@@ -47,7 +47,7 @@ class Student(models.Model):
 class Grade(models.Model):
     student = models.ForeignKey(Student,  on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    grade = models.DecimalField(decimal_places=2, max_digits=5)
+    grade = models.DecimalField(decimal_places=2, max_digits=5, null=True, blank=True)
     created_at = models.DateTimeField(default= timezone.now)
 
     def grade_letter(self):
@@ -68,6 +68,7 @@ class Grade(models.Model):
         else:
             return 'F'
         
+# checking if the student and the course are in the same department
     def clean(self):
         if self.student.department != self.course.department:
             raise ValidationError('Student and Course must belong to the same Department')
