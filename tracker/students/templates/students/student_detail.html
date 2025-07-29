@@ -1,7 +1,21 @@
+<h1>Student Profile</h1>
 <h2> {{students.first_name}} {{students.last_name}}</h2>
 
-<p> Gender: {{students.gender}} </p>
-<p> Email: {{students.email}} </p>
+
+<h3> Details</h3>
+<p><strong> Gender: </strong>{{students.gender}} </p>
+<p><Strong> Email: </strong>{{students.email}} </p>
+<p><Strong> Department: </strong>{{students.department.department_name |default:"not assigned"}}
+
+<table>
+    <tr><th>Courses</th><th>Grades</th></tr>
+    {% for grade_obj in grades %}
+        <tr>
+            <td>{{ grade_obj.course.course_name }}</td>
+            <td>{{ grade_obj.grade }} ({{ grade_obj.grade_letter }})</td>
+        </tr>
+    {% endfor %}
+</table>
 
 <a href="{% url 'student-update' students.pk %}">Edit</a>
 <a href="{% url 'student-delete' students.pk %}">Delete</a>

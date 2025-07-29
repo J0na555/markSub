@@ -15,6 +15,15 @@ class StudentDetailView(DetailView):
     template_name = 'students/student_detail.html'
     context_object_name = 'students'
 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = self.get_object()
+        context['grades'] = Grade.objects.filter(student=student)
+        context['department'] = self.object.department
+
+        return context
+
 class StudentCreateView(CreateView):
     model = Student
     fields = '__all__'
