@@ -51,7 +51,9 @@ class Grade(models.Model):
     created_at = models.DateTimeField(default= timezone.now)
 
     def grade_letter(self):
-        if self.grade >= 90 :
+        if self.grade is None:
+            return 'N/A'
+        elif self.grade >= 90 and self.grade <= 100:
             return 'A+'
         elif self.grade >= 85 and self.grade <= 89:
             return 'A'
