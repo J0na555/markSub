@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-aque&@c@ju3)co2m)m9u(uwd(^61_k*outyt+s34-&nesc73h*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://marksub.onrender.com']
 
 
 # Application definition
