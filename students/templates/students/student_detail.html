@@ -1,0 +1,123 @@
+{% extends 'students/base.html' %}
+
+{% block title %}{{ students.first_name }} {{ students.last_name }} - Student Profile{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Student Header -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="avatar-placeholder me-4">
+                        <i class="fas fa-user-graduate fa-4x text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h1 class="card-title mb-2">{{ students.first_name }} {{ students.last_name }}</h1>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-envelope me-2"></i>{{ students.email }}
+                        </p>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'student-update' students.pk %}" class="btn btn-primary">
+                            <i class="fas fa-edit me-2"></i>Edit
+                        </a>
+                        <a href="{% url 'student-delete' students.pk %}" class="btn btn-danger">
+                            <i class="fas fa-trash me-2"></i>Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Student Details -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>Student Details
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label text-muted">Gender</label>
+                                <p class="mb-0 fw-bold">{{ students.gender }}</p>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label text-muted">Department</label>
+                                <p class="mb-0 fw-bold">
+                                    {{ students.department.department_name|default:"Not Assigned" }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-line me-2"></i>Academic Performance
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if grades %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Grade</th>
+                                            <th>Letter</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for grade_obj in grades %}
+                                        <tr>
+                                            <td>
+                                                <i class="fas fa-book me-2"></i>
+                                                {{ grade_obj.course.course_name }}
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-primary">{{ grade_obj.grade }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">{{ grade_obj.grade_letter }}</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="text-center py-4">
+                                <i class="fas fa-chart-line fa-2x text-muted mb-3"></i>
+                                <p class="text-muted mb-0">No grades recorded yet</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'student-list' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Students
+            </a>
+            <div class="d-flex gap-2">
+                <a href="{% url 'student-update' students.pk %}" class="btn btn-primary">
+                    <i class="fas fa-edit me-2"></i>Edit Student
+                </a>
+                <a href="{% url 'student-delete' students.pk %}" class="btn btn-danger">
+                    <i class="fas fa-trash me-2"></i>Delete Student
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
