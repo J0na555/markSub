@@ -1,4 +1,4 @@
-<img width="1829" height="778" alt="image" src="https://github.com/user-attachments/assets/ca18ca4e-a0ee-43c7-8a8c-16c0b2361d56" /># Student Marks  Tracker
+# Student Marks  Tracker
 
 A web-based application to manage students, courses, departments and  grades. Built using Django (CBV-based) and deployed on Render.
 ---
@@ -24,6 +24,10 @@ A web-based application to manage students, courses, departments and  grades. Bu
 - **Deployment:** Render
 - **Python version:** 3.11+
 
+---
+📸 Screenshots
+
+<img width="1829" height="778" alt="image" src="https://github.com/user-attachments/assets/ca18ca4e-a0ee-43c7-8a8c-16c0b2361d56" />
 ---
 
 ## ⚙️ Setup Instructions
