@@ -28,6 +28,10 @@ A web-based application to manage students, courses, departments and  grades. Bu
 📸 Screenshots
 
 <img width="1829" height="778" alt="image" src="https://github.com/user-attachments/assets/ca18ca4e-a0ee-43c7-8a8c-16c0b2361d56" />
+<img width="1655" height="685" alt="image" src="https://github.com/user-attachments/assets/05a47e4f-0589-4c99-9f13-fca8244c5c83" />
+<img width="1758" height="703" alt="image" src="https://github.com/user-attachments/assets/a72aaaf9-c5fe-4a9d-a9ba-083fdadfd820" />
+
+
 ---
 
 ## ⚙️ Setup Instructions
